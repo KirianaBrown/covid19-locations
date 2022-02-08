@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchLocationData } from "./store/locations-action";
-import Header from "./components/Header";
+import Header from "./components/Ui/Header";
 
 function App() {
   const [hasLoaded, setHasLoaded] = useState(false);
