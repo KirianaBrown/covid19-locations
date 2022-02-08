@@ -1,4 +1,4 @@
-@import "../assets/var.css";
+@import "../../assets/var.css";
 header {
     display: flex;
     align-items: center;
