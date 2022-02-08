@@ -1,0 +1,9 @@
+@import url("https://fonts.googleapis.com/css2?family=Archivo+Black&family=Roboto:wght@300;400;500;700&display=swap");
+:root {
+    --color-black: #012032;
+    --color-blue: #33b1ff;
+    --color-white: #f1f1e6;
+    --color-grey: #a8a8a8;
+    --font-heading: "Archivo Black", sans-serif;
+    --font-text: "Roboto", sans-serif;
+}
