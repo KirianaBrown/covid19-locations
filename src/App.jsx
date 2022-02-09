@@ -10,6 +10,7 @@ function App() {
   const [hasLoaded, setHasLoaded] = useState(false);
 
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(fetchLocationData());
   }, [dispatch]);
@@ -28,7 +29,7 @@ function App() {
       <Header />
       {!hasLoaded && <p>Loading ...</p>}
       <Layout>
-        {hasLoaded && <Locations />}
+        {hasLoaded && <Locations locations={locations} />}
         <Map />
       </Layout>
     </div>

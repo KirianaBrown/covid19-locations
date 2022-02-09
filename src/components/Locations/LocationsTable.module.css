@@ -70,3 +70,13 @@ tbody tr td:first-child {
     fill: var(--color-grey) !important;
     cursor: pointer;
 }
+
+.active {
+    color: var(--color-blue);
+    cursor: pointer;
+}
+
+.nonActive {
+    color: var(--color-grey);
+    cursor: pointer;
+}

@@ -1,21 +1,27 @@
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import Pagination from "./Pagination";
+
 import FilterAltIcon from "@mui/icons-material/FilterAlt";
 import Close from "../../assets/close.png";
 import Casual from "../../assets/casual.png";
 import classes from "./LocationsTable.module.css";
 
-export default function LocationsTable() {
-  const [displayLocations, setDisplayLocations] = useState([]);
+export default function LocationsTable(props) {
+  const [displayLocations, setDisplayLocations] = useState(props.locations);
   const [publishedFilterOn, setPublishedFilterOn] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
 
   const locations = useSelector((state) => state.locations.filteredLocations);
 
   useEffect(() => {
-    setDisplayLocations(locations);
-  }, [locations]);
+    if (locations.length === 0) {
+      setDisplayLocations(props.locations);
+    } else {
+      setDisplayLocations(locations);
+      setPublishedFilterOn(false);
+    }
+  }, [locations, props]);
 
   // handle filter of display locations by published date
   const publishedSortHandler = () => {
@@ -56,7 +62,10 @@ export default function LocationsTable() {
             <th>Location</th>
             <th>Date</th>
             <th>Exposure Level</th>
-            <th>
+            <th
+              className={publishedFilterOn ? classes.active : classes.nonActive}
+              onClick={publishedSortHandler}
+            >
               Published
               <FilterAltIcon
                 onClick={publishedSortHandler}
