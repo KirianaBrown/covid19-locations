@@ -8,6 +8,33 @@
     justify-content: space-between;
 }
 
+table {
+    padding: 1rem;
+    border-collapse: collapse;
+}
+
+table img {
+    height: 50%;
+}
+
+td,
+th {
+    padding: 0.5rem;
+}
+
+tr {
+    border-bottom: 1pt solid var(--color-grey);
+}
+
+tbody tr td:first-child {
+    font-weight: 600;
+    font-size: 1.2rem;
+}
+
+.exposureImage {
+    width: 60%;
+}
+
 .pagination {
     display: flex;
     background-color: var(--color-black-ligher);

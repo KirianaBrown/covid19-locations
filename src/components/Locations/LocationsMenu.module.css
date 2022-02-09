@@ -5,6 +5,20 @@
     overflow-y: scroll;
 }
 
+.locationsMenu::-webkit-scrollbar {
+    width: 12px;
+}
+
+.locationsMenu::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background-color: var(--color-black);
+}
+
+.locationsMenu::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: #33b1ff3a;
+}
+
 .locationsMenu ul {
     height: 100%;
     margin: 0;
