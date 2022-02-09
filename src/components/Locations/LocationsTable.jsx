@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
+import Pagination from "./Pagination";
 import FilterAltIcon from "@mui/icons-material/FilterAlt";
 import Close from "../../assets/close.png";
 import Casual from "../../assets/casual.png";
@@ -8,6 +9,7 @@ import classes from "./LocationsTable.module.css";
 export default function LocationsTable() {
   const [displayLocations, setDisplayLocations] = useState([]);
   const [publishedFilterOn, setPublishedFilterOn] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
 
   const locations = useSelector((state) => state.locations.filteredLocations);
 
@@ -26,6 +28,26 @@ export default function LocationsTable() {
 
     // 3. set state for active case
     setPublishedFilterOn(!publishedFilterOn);
+  };
+
+  // Pagination Data
+  // setDisplayPage, currentPage, len, resPerPage
+
+  const resPerPage = 8;
+  const len = displayLocations.length;
+  const start = (currentPage - 1) * resPerPage;
+  const end = currentPage * resPerPage;
+
+  const displayLocationsOnPage = displayLocations.slice(start, end);
+
+  const setDisplayPage = (btnAction) => {
+    setCurrentPage((prevState) => {
+      if (btnAction === "next") {
+        return (prevState += 1);
+      } else {
+        return (prevState -= 1);
+      }
+    });
   };
 
   return (
@@ -51,7 +73,7 @@ export default function LocationsTable() {
           </tr>
         </thead>
         <tbody>
-          {displayLocations.map((event) => (
+          {displayLocationsOnPage.map((event) => (
             <tr key={event.eventId}>
               <td>{event.eventName}</td>
               <td>
@@ -81,7 +103,14 @@ export default function LocationsTable() {
           ))}
         </tbody>
       </table>
-      <div className={classes.pagination}>Pagination</div>
+      <div className={classes.pagination}>
+        <Pagination
+          setPage={setDisplayPage}
+          currentPage={currentPage}
+          len={len}
+          resPerPage={resPerPage}
+        />
+      </div>
     </div>
   );
 }
