@@ -1,9 +1,12 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import Close from "../../assets/close.png";
 import Casual from "../../assets/casual.png";
 import classes from "./LocationsTable.module.css";
 
 export default function LocationsTable() {
+  const locations = useSelector((state) => state.locations.filteredLocations);
+
   return (
     <div className={classes.locationsTable}>
       <table>
@@ -17,36 +20,24 @@ export default function LocationsTable() {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>PaknSave Supermarket Manukau</td>
-            <td>
-              2022-08-01 NZDT <br></br> 2022-08-09 NZDT
-            </td>
-            <td>
-              <img
-                src={Casual}
-                alt="Close Contact"
-                className={classes.exposureImage}
-              />
-            </td>
-            <td>2022-08-01 NZDT</td>
-            <td>Link</td>
-          </tr>
-          <tr>
-            <td>PaknSave Supermarket Manukau</td>
-            <td>
-              2022-08-01 NZDT <br></br> 2022-08-09 NZDT
-            </td>
-            <td>
-              <img
-                src={Close}
-                alt="Close Contact"
-                className={classes.exposureImage}
-              />
-            </td>
-            <td>2022-08-01 NZDT</td>
-            <td>Link</td>
-          </tr>
+          {locations.map((event) => (
+            <tr key={event.id}>
+              <td>{event.eventName}</td>
+              <td>
+                {new Date(event.startDateTime).toString().slice(0, -36)}
+                <br></br> {new Date(event.endDateTime).toString().slice(0, -36)}
+              </td>
+              <td>
+                <img
+                  src={event.exposureType === "Casual" ? Casual : Close}
+                  alt={event.exposureType}
+                  className={classes.exposureImage}
+                />
+              </td>
+              <td>{new Date(event.publishedAt).toString().slice(0, -36)}</td>
+              <td>Link</td>
+            </tr>
+          ))}
         </tbody>
       </table>
       <div className={classes.pagination}>Pagination</div>

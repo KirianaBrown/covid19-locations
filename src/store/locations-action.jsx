@@ -32,7 +32,6 @@ export const fetchLocationData = () => {
 
 export const setUniqueCities = (locations) => {
   return (dispatch) => {
-    // const locations = useSelector((state) => state.locations.locations.items);
     const cities = locations.map((city) => city.location.city);
     const unique = new Set(cities);
     const fullListOfCities = [...unique];
@@ -40,6 +39,26 @@ export const setUniqueCities = (locations) => {
     dispatch(
       locationsActions.setUniqueCityNames({
         data: fullListOfCities,
+      })
+    );
+  };
+};
+
+export const setFilteredLocations = (city, locations) => {
+  return (dispatch) => {
+    let filteredLocations = [];
+
+    if (city === "All Locations") {
+      filteredLocations = locations;
+    } else {
+      filteredLocations = locations.filter(
+        (location) => location.location.city === city
+      );
+    }
+
+    dispatch(
+      locationsActions.setFilteredLocations({
+        data: filteredLocations,
       })
     );
   };
