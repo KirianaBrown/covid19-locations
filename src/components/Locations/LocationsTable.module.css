@@ -11,6 +11,12 @@
 table {
     padding: 1rem;
     border-collapse: collapse;
+    color: var(--color-grey);
+}
+
+th {
+    /* color: var(--color-white); */
+    font-size: 1.2rem;
 }
 
 table img {
@@ -19,16 +25,24 @@ table img {
 
 td,
 th {
-    padding: 0.5rem;
+    padding: 0.75rem;
+    text-align: center;
 }
 
 tr {
-    border-bottom: 1pt solid var(--color-grey);
+    border-bottom: 1pt solid var(--color-black-ligher);
+}
+
+tbody tr td {
+    font-weight: 600;
+    font-size: 0.8rem;
 }
 
 tbody tr td:first-child {
     font-weight: 600;
-    font-size: 1.2rem;
+    font-size: 1rem;
+    text-align: left;
+    padding-left: 2rem;
 }
 
 .exposureImage {

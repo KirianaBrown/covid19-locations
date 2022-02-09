@@ -1,5 +1,5 @@
 import React from "react";
-// import Close from "../../assets/close.png";
+import Close from "../../assets/close.png";
 import Casual from "../../assets/casual.png";
 import classes from "./LocationsTable.module.css";
 
@@ -18,8 +18,10 @@ export default function LocationsTable() {
         </thead>
         <tbody>
           <tr>
-            <td>Kens Mart</td>
-            <td>2022-08-01 NZDT - 2022-08-09 NZDT</td>
+            <td>PaknSave Supermarket Manukau</td>
+            <td>
+              2022-08-01 NZDT <br></br> 2022-08-09 NZDT
+            </td>
             <td>
               <img
                 src={Casual}
