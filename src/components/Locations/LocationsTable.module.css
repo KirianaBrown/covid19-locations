@@ -1,0 +1,15 @@
+@import "../../assets/var.css";
+.locationsTable {
+    height: 97%;
+    border: var(--color-black-ligher) 1rem solid;
+    border-left: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.pagination {
+    display: flex;
+    background-color: var(--color-black-ligher);
+    padding: 1rem;
+}
