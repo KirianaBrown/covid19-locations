@@ -1,4 +1,3 @@
-import { useSelector } from "react-redux";
 import { locationsActions } from "./locations-slice";
 
 export const fetchLocationData = () => {
