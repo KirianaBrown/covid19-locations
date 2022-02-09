@@ -1,0 +1,6 @@
+@import "../../assets/var.css";
+.locations {
+    display: grid;
+    grid-template-columns: 35% 65%;
+    /* background-color: var(--color-black-ligher); */
+}
