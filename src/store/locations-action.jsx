@@ -1,3 +1,4 @@
+import { useSelector } from "react-redux";
 import { locationsActions } from "./locations-slice";
 
 export const fetchLocationData = () => {
@@ -26,5 +27,20 @@ export const fetchLocationData = () => {
     } catch (error) {
       console.log(`Error setting location data into state: ${error}`);
     }
+  };
+};
+
+export const setUniqueCities = (locations) => {
+  return (dispatch) => {
+    // const locations = useSelector((state) => state.locations.locations.items);
+    const cities = locations.map((city) => city.location.city);
+    const unique = new Set(cities);
+    const fullListOfCities = [...unique];
+
+    dispatch(
+      locationsActions.setUniqueCityNames({
+        data: fullListOfCities,
+      })
+    );
   };
 };

@@ -5,11 +5,19 @@ const locationsSlice = createSlice({
   initialState: {
     locations: [],
     isLoaded: false,
+    selectedCity: "All Locations",
+    uniqueCityNames: [],
   },
   reducers: {
     setLocationsData(state, action) {
       state.locations = action.payload.data;
       state.isLoaded = action.payload.loaded;
+    },
+    setSelectedCity(state, action) {
+      state.selectedCity = action.payload.city;
+    },
+    setUniqueCityNames(state, action) {
+      state.uniqueCityNames = action.payload.data;
     },
   },
 });

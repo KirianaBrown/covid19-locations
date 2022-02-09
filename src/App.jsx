@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchLocationData } from "./store/locations-action";
+import { fetchLocationData, setUniqueCities } from "./store/locations-action";
 import Header from "./components/Ui/Header";
 import Layout from "./components/Ui/Layout";
 import Locations from "./components/Locations/Locations";
@@ -16,9 +16,12 @@ function App() {
 
   const locationData = useSelector((state) => state.locations.isLoaded);
 
+  const locations = useSelector((state) => state.locations.locations.items);
+
   useEffect(() => {
     locationData && setHasLoaded(true);
-  }, [locationData]);
+    locationData && dispatch(setUniqueCities(locations));
+  }, [locationData, dispatch, locations]);
 
   return (
     <div>
