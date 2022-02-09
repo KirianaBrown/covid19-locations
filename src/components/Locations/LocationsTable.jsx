@@ -25,7 +25,8 @@ export default function LocationsTable() {
               <td>{event.eventName}</td>
               <td>
                 {new Date(event.startDateTime).toString().slice(0, -36)}
-                <br></br> {new Date(event.endDateTime).toString().slice(0, -36)}
+                <br></br> --- <br></br>{" "}
+                {new Date(event.endDateTime).toString().slice(0, -36)}
               </td>
               <td>
                 <img
@@ -34,7 +35,16 @@ export default function LocationsTable() {
                   className={classes.exposureImage}
                 />
               </td>
-              <td>{new Date(event.publishedAt).toString().slice(0, -36)}</td>
+              <td>
+                {new Date(event.publishedAt).toString().slice(0, -46) ===
+                new Date().toString().slice(0, -46) ? (
+                  <p>NEW</p>
+                ) : (
+                  ""
+                )}
+                <br></br>
+                {new Date(event.publishedAt).toString().slice(0, -36)}
+              </td>
               <td>Link</td>
             </tr>
           ))}
