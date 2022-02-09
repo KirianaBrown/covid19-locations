@@ -19,13 +19,15 @@
 .button {
     border: none;
     background-color: transparent;
-    color: var(--color-white);
+    color: inherit;
     cursor: pointer;
     font-size: 1rem;
     width: 100%;
     height: 100%;
-    padding: 1rem 2rem;
+    padding: 1.5rem 2rem;
     text-align: left;
+    font-weight: inherit;
+    letter-spacing: 1.1px;
 }
 
 .locationsMenu ul li:hover {
@@ -34,4 +36,6 @@
 
 .active {
     background-color: var(--color-black);
+    color: var(--color-blue);
+    font-weight: 600;
 }
