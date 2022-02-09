@@ -30,9 +30,7 @@ export default function LocationsTable() {
     setPublishedFilterOn(!publishedFilterOn);
   };
 
-  // Pagination Data
-  // setDisplayPage, currentPage, len, resPerPage
-
+  // Set pagination values
   const resPerPage = 8;
   const len = displayLocations.length;
   const start = (currentPage - 1) * resPerPage;
