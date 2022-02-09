@@ -17,9 +17,11 @@ export default function LocationsTable(props) {
   useEffect(() => {
     if (locations.length === 0) {
       setDisplayLocations(props.locations);
+      setCurrentPage(1);
     } else {
       setDisplayLocations(locations);
       setPublishedFilterOn(false);
+      setCurrentPage(1);
     }
   }, [locations, props]);
 
