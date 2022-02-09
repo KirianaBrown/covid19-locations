@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
+import FilterAltIcon from "@mui/icons-material/FilterAlt";
 import Close from "../../assets/close.png";
 import Casual from "../../assets/casual.png";
 import classes from "./LocationsTable.module.css";
 
 export default function LocationsTable() {
   const [displayLocations, setDisplayLocations] = useState([]);
+  const [publishedFilterOn, setPublishedFilterOn] = useState(false);
 
   const locations = useSelector((state) => state.locations.filteredLocations);
 
@@ -13,13 +15,17 @@ export default function LocationsTable() {
     setDisplayLocations(locations);
   }, [locations]);
 
+  // handle filter of display locations by published date
   const publishedSortHandler = () => {
-    console.log("published sort handler clicked");
+    // 1. sort
     const sortedLocationsByPublish = locations
       .slice()
       .sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt));
-
+    // 2. set display locations in state
     setDisplayLocations(sortedLocationsByPublish);
+
+    // 3. set state for active case
+    setPublishedFilterOn(!publishedFilterOn);
   };
 
   return (
@@ -30,7 +36,17 @@ export default function LocationsTable() {
             <th>Location</th>
             <th>Date</th>
             <th>Exposure Level</th>
-            <th onClick={publishedSortHandler}>Published</th>
+            <th>
+              Published
+              <FilterAltIcon
+                onClick={publishedSortHandler}
+                className={
+                  publishedFilterOn
+                    ? classes.filterActive
+                    : classes.filterNonActive
+                }
+              />
+            </th>
             <th>Advice</th>
           </tr>
         </thead>

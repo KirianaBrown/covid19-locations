@@ -60,3 +60,13 @@ tbody tr td:first-child {
     padding: 0;
     margin: 0;
 }
+
+.filterActive {
+    cursor: pointer;
+    fill: var(--color-blue) !important;
+}
+
+.filterNonActive {
+    fill: var(--color-grey) !important;
+    cursor: pointer;
+}
