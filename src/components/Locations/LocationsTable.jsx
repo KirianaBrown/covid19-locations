@@ -21,7 +21,7 @@ export default function LocationsTable() {
         </thead>
         <tbody>
           {locations.map((event) => (
-            <tr key={event.id}>
+            <tr key={event.eventId}>
               <td>{event.eventName}</td>
               <td>
                 {new Date(event.startDateTime).toString().slice(0, -36)}
