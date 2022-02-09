@@ -54,3 +54,9 @@ tbody tr td:first-child {
     background-color: var(--color-black-ligher);
     padding: 1rem;
 }
+
+.newPublish {
+    color: var(--color-blue);
+    padding: 0;
+    margin: 0;
+}

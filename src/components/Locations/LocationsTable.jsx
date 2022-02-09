@@ -1,11 +1,26 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import Close from "../../assets/close.png";
 import Casual from "../../assets/casual.png";
 import classes from "./LocationsTable.module.css";
 
 export default function LocationsTable() {
+  const [displayLocations, setDisplayLocations] = useState([]);
+
   const locations = useSelector((state) => state.locations.filteredLocations);
+
+  useEffect(() => {
+    setDisplayLocations(locations);
+  }, [locations]);
+
+  const publishedSortHandler = () => {
+    console.log("published sort handler clicked");
+    const sortedLocationsByPublish = locations
+      .slice()
+      .sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt));
+
+    setDisplayLocations(sortedLocationsByPublish);
+  };
 
   return (
     <div className={classes.locationsTable}>
@@ -15,12 +30,12 @@ export default function LocationsTable() {
             <th>Location</th>
             <th>Date</th>
             <th>Exposure Level</th>
-            <th>Published</th>
+            <th onClick={publishedSortHandler}>Published</th>
             <th>Advice</th>
           </tr>
         </thead>
         <tbody>
-          {locations.map((event) => (
+          {displayLocations.map((event) => (
             <tr key={event.eventId}>
               <td>{event.eventName}</td>
               <td>
@@ -38,7 +53,7 @@ export default function LocationsTable() {
               <td>
                 {new Date(event.publishedAt).toString().slice(0, -46) ===
                 new Date().toString().slice(0, -46) ? (
-                  <p>NEW</p>
+                  <p className={classes.newPublish}>NEW</p>
                 ) : (
                   ""
                 )}
