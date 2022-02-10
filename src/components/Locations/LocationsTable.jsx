@@ -9,12 +9,26 @@ import FilterAltIcon from "@mui/icons-material/FilterAlt";
 import Close from "../../assets/close.png";
 import Casual from "../../assets/casual.png";
 import classes from "./LocationsTable.module.css";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import Modal from "@mui/material/Modal";
 
 export default function LocationsTable(props) {
   const dispatch = useDispatch();
   const [displayLocations, setDisplayLocations] = useState(props.locations);
   const [publishedFilterOn, setPublishedFilterOn] = useState(false);
+  const [modalEvent, setModalEvent] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
+
+  // modal
+  // Modal
+  const [open, setOpen] = useState(false);
+  const handleOpen = (event) => {
+    setOpen(true);
+    setModalEvent(event);
+    console.log(event);
+  };
+  const handleClose = () => setOpen(false);
 
   const locations = useSelector((state) => state.locations.filteredLocations);
 
@@ -80,6 +94,21 @@ export default function LocationsTable(props) {
     }
   };
 
+  // MODAL
+  const style = {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    width: 400,
+    bgcolor: "#012e47",
+    border: "2px solid #012032",
+    borderRadius: "10px",
+    boxShadow: 24,
+    p: 4,
+    color: "#f1f1e6;",
+  };
+
   return (
     <div className={classes.locationsTable}>
       <table>
@@ -136,11 +165,31 @@ export default function LocationsTable(props) {
                 <br></br>
                 {new Date(event.publishedAt).toString().slice(0, -36)}
               </td>
-              <td>Link</td>
+              <td onClick={() => handleOpen(event)}>Link</td>
             </tr>
           ))}
         </tbody>
       </table>
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+          <Typography id="modal-modal-title" variant="h6" component="h2">
+            {modalEvent.eventName}
+          </Typography>
+          <Typography
+            id="modal-modal-title"
+            variant="h6"
+            component="h2"
+          ></Typography>
+          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+            {modalEvent.publicAdvice}
+          </Typography>
+        </Box>
+      </Modal>
       <div className={classes.pagination}>
         <Pagination
           setPage={setDisplayPage}
