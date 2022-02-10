@@ -72,3 +72,13 @@ export const setDisplayLocationsInState = (locations) => {
     );
   };
 };
+
+export const setFocusCoordsInState = (coords) => {
+  return (dispatch) => {
+    dispatch(
+      locationsActions.setFocusCoords({
+        data: coords,
+      })
+    );
+  };
+};

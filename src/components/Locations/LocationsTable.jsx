@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Pagination from "./Pagination";
-import { setDisplayLocationsInState } from "../../store/locations-action";
+import {
+  setDisplayLocationsInState,
+  setFocusCoordsInState,
+} from "../../store/locations-action";
 import FilterAltIcon from "@mui/icons-material/FilterAlt";
 import Close from "../../assets/close.png";
 import Casual from "../../assets/casual.png";
@@ -61,6 +64,15 @@ export default function LocationsTable(props) {
     });
   };
 
+  const getCoordsHandler = (event) => {
+    const lat = event.location.latitude;
+    const lon = event.location.longitude;
+
+    if (lat !== "") {
+      dispatch(setFocusCoordsInState([+lat, +lon]));
+    }
+  };
+
   return (
     <div className={classes.locationsTable}>
       <table>
@@ -88,7 +100,12 @@ export default function LocationsTable(props) {
         </thead>
         <tbody>
           {displayLocationsOnPage.map((event) => (
-            <tr key={event.eventId}>
+            <tr
+              key={event.eventId}
+              onClick={() => getCoordsHandler(event)}
+              value={event}
+              data-foo="42"
+            >
               <td>{event.eventName}</td>
               <td>
                 {new Date(event.startDateTime).toString().slice(0, -36)}

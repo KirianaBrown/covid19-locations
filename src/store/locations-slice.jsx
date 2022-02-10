@@ -9,6 +9,7 @@ const locationsSlice = createSlice({
     uniqueCityNames: [],
     filteredLocations: [],
     displayLocations: [],
+    focusCoords: [-36.8509, 174.7645],
   },
   reducers: {
     setLocationsData(state, action) {
@@ -26,6 +27,9 @@ const locationsSlice = createSlice({
     },
     setDisplayLocations(state, action) {
       state.displayLocations = action.payload.data;
+    },
+    setFocusCoords(state, action) {
+      state.focusCoords = action.payload.data;
     },
   },
 });

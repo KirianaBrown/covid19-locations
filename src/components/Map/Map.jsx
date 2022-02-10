@@ -15,13 +15,9 @@ import classes from "./Map.module.css";
 
 export default function Map(props) {
   const [markerLocations, setMarkerLocations] = useState([]);
-
   const defaultPosition = [-36.8509, 174.7645]; // Auckland
-  // const markerLocations = useSelector(
-  //   (state) => state.locations.displayLocations
-  // );
-
   const allLocations = useSelector((state) => state.locations.locations.items);
+  const focusCoords = useSelector((state) => state.locations.focusCoords);
 
   useEffect(() => {
     if (allLocations) {
@@ -33,6 +29,12 @@ export default function Map(props) {
       console.log("No locations");
     }
   }, [allLocations]);
+
+  function SetViewOnClick({ coords }) {
+    const map = useMap();
+    map.setView(coords, map.getZoom());
+    return null;
+  }
 
   return (
     <div className={classes.mapContainer}>
@@ -70,6 +72,7 @@ export default function Map(props) {
             <Popup>Auckland NZ</Popup>
           </Marker>
         )}
+        <SetViewOnClick coords={focusCoords} />
       </MapContainer>
     </div>
   );
