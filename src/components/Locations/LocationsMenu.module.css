@@ -3,6 +3,7 @@
     background-color: var(--color-black-ligher);
     height: 90vh;
     overflow-y: scroll;
+    direction: rtl;
 }
 
 .locationsMenu::-webkit-scrollbar {
@@ -23,6 +24,7 @@
     height: 100%;
     margin: 0;
     padding-inline-start: 0;
+    direction: ltr;
 }
 
 .locationsMenu ul li {
