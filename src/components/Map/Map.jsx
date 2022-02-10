@@ -8,7 +8,6 @@ import {
   ZoomControl,
   useMap,
 } from "react-leaflet";
-import * as L from "leaflet";
 import Casual from "../../assets/casual.png";
 import Close from "../../assets/close.png";
 import classes from "./Map.module.css";

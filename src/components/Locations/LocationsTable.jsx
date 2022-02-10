@@ -52,6 +52,13 @@ export default function LocationsTable(props) {
 
   useEffect(() => {
     dispatch(setDisplayLocationsInState(displayLocationsOnPage));
+
+    dispatch(
+      setFocusCoordsInState([
+        +displayLocationsOnPage[0].location.latitude,
+        +displayLocationsOnPage[0].location.longitude,
+      ])
+    );
   }, [dispatch, displayLocationsOnPage]);
 
   const setDisplayPage = (btnAction) => {
