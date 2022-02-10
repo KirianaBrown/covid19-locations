@@ -9,6 +9,8 @@ import {
   useMap,
 } from "react-leaflet";
 import * as L from "leaflet";
+import Casual from "../../assets/casual.png";
+import Close from "../../assets/close.png";
 import classes from "./Map.module.css";
 
 export default function Map(props) {
@@ -54,7 +56,12 @@ export default function Map(props) {
               key={el.eventId}
             >
               <Popup>
-                {el.eventName} <br></br> Exposure Type: {el.exposureType}
+                {el.eventName} <br></br>
+                <img
+                  src={el.exposureType === "Casual" ? Casual : Close}
+                  alt={el.exposureType}
+                  className={classes.exposureImage}
+                />
               </Popup>
             </Marker>
           ))
