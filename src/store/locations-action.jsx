@@ -62,3 +62,13 @@ export const setFilteredLocations = (city, locations) => {
     );
   };
 };
+
+export const setDisplayLocationsInState = (locations) => {
+  return (dispatch) => {
+    dispatch(
+      locationsActions.setDisplayLocations({
+        data: locations,
+      })
+    );
+  };
+};

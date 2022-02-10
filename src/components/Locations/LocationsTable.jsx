@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import Pagination from "./Pagination";
-
+import { setDisplayLocationsInState } from "../../store/locations-action";
 import FilterAltIcon from "@mui/icons-material/FilterAlt";
 import Close from "../../assets/close.png";
 import Casual from "../../assets/casual.png";
 import classes from "./LocationsTable.module.css";
 
 export default function LocationsTable(props) {
+  const dispatch = useDispatch();
   const [displayLocations, setDisplayLocations] = useState(props.locations);
   const [publishedFilterOn, setPublishedFilterOn] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
@@ -45,6 +46,10 @@ export default function LocationsTable(props) {
   const end = currentPage * resPerPage;
 
   const displayLocationsOnPage = displayLocations.slice(start, end);
+
+  useEffect(() => {
+    dispatch(setDisplayLocationsInState(displayLocationsOnPage));
+  }, [dispatch, displayLocationsOnPage]);
 
   const setDisplayPage = (btnAction) => {
     setCurrentPage((prevState) => {

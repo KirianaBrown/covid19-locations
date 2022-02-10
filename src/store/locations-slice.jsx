@@ -8,6 +8,7 @@ const locationsSlice = createSlice({
     selectedCity: "All Locations",
     uniqueCityNames: [],
     filteredLocations: [],
+    displayLocations: [],
   },
   reducers: {
     setLocationsData(state, action) {
@@ -22,6 +23,9 @@ const locationsSlice = createSlice({
     },
     setFilteredLocations(state, action) {
       state.filteredLocations = action.payload.data;
+    },
+    setDisplayLocations(state, action) {
+      state.displayLocations = action.payload.data;
     },
   },
 });
