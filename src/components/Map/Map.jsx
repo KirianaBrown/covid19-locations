@@ -58,6 +58,11 @@ export default function Map(props) {
             >
               <Popup>
                 {el.eventName} <br></br>
+                <p>
+                  {new Date(el.startDateTime).toString().slice(0, -36)}
+                  <br></br> --- <br></br>
+                  {new Date(el.endDateTime).toString().slice(0, -36)}
+                </p>
                 <img
                   src={el.exposureType === "Casual" ? Casual : Close}
                   alt={el.exposureType}
