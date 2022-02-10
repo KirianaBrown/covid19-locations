@@ -165,7 +165,12 @@ export default function LocationsTable(props) {
                 <br></br>
                 {new Date(event.publishedAt).toString().slice(0, -36)}
               </td>
-              <td onClick={() => handleOpen(event)}>Link</td>
+              <td
+                onClick={() => handleOpen(event)}
+                className={classes.modalLink}
+              >
+                See Advice
+              </td>
             </tr>
           ))}
         </tbody>

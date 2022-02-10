@@ -80,3 +80,9 @@ tbody tr td:first-child {
     color: var(--color-grey);
     cursor: pointer;
 }
+
+.modalLink {
+    color: var(--color-blue);
+    font-weight: 600;
+    cursor: pointer;
+}

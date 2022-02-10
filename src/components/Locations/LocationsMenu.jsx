@@ -40,13 +40,23 @@ export default function LocationsMenu() {
             key={city}
             className={selectedCity === city ? classes.active : ""}
           >
-            <button
-              onClick={selectHandler}
-              className={classes.button}
-              value={city}
-            >
-              {city}
-            </button>
+            {city === "" ? (
+              <button
+                onClick={selectHandler}
+                className={classes.button}
+                value={"Other"}
+              >
+                Flights / Other
+              </button>
+            ) : (
+              <button
+                onClick={selectHandler}
+                className={classes.button}
+                value={city}
+              >
+                {city}
+              </button>
+            )}
           </li>
         ))}
       </ul>
