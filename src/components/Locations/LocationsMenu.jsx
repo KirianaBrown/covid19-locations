@@ -15,6 +15,9 @@ export default function LocationsMenu() {
 
   const selectHandler = (e) => {
     setSelectedCity(e.target.value);
+    if (e.target.value === "") {
+      dispatch(locationsActions.setSelectedCity({ city: "All Locations" }));
+    }
     dispatch(locationsActions.setSelectedCity({ city: e.target.value }));
     dispatch(setFilteredLocations(e.target.value, locations));
   };
@@ -44,7 +47,7 @@ export default function LocationsMenu() {
               <button
                 onClick={selectHandler}
                 className={classes.button}
-                value={"Other"}
+                value={""}
               >
                 Flights / Other
               </button>
