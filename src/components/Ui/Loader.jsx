@@ -4,7 +4,9 @@ import classes from "./Loader.module.css";
 export default function Loader() {
   return (
     <div className={classes.loader}>
-      <h1>...Loading</h1>
+      <div className={classes.ring}>
+        Loading <span></span>
+      </div>
     </div>
   );
 }
