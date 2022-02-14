@@ -29,8 +29,12 @@ function App() {
       <Header />
       {!hasLoaded && <p>Loading ...</p>}
       <Layout>
-        {hasLoaded && <Locations locations={locations} />}
-        <Map />
+        {hasLoaded && (
+          <>
+            <Locations locations={locations} />
+            <Map />
+          </>
+        )}
       </Layout>
     </div>
   );
