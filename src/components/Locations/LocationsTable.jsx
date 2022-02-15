@@ -57,7 +57,12 @@ export default function LocationsTable(props) {
   };
 
   // Set pagination values
-  const resPerPage = 8;
+  let resPerPage = 8;
+  const width = window.screen.width;
+  if (width >= 1920) {
+    resPerPage = 19;
+  }
+
   const len = displayLocations.length;
   const start = (currentPage - 1) * resPerPage;
   const end = currentPage * resPerPage;
