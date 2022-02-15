@@ -35,16 +35,20 @@ function App() {
   return (
     <div>
       {loading && <Loader />}
-      <Header />
-      {!hasLoaded && <p>Loading ...</p>}
-      <Layout>
-        {hasLoaded && (
-          <>
-            <Locations locations={locations} />
-            <Map />
-          </>
-        )}
-      </Layout>
+      {!loading && (
+        <>
+          <Header />
+          {!hasLoaded && <p>Loading ...</p>}
+          <Layout>
+            {hasLoaded && (
+              <>
+                <Locations locations={locations} />
+                <Map />
+              </>
+            )}
+          </Layout>
+        </>
+      )}
     </div>
   );
 }
