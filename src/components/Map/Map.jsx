@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
 import {
   MapContainer,
@@ -11,7 +11,6 @@ import {
 import * as L from "leaflet";
 import Casual from "../../assets/casual.png";
 import Close from "../../assets/close.png";
-import Logo from "../../assets/logo.png";
 import classes from "./Map.module.css";
 
 export default function Map(props) {
@@ -19,6 +18,7 @@ export default function Map(props) {
   const defaultPosition = [-36.8509, 174.7645]; // Auckland
   const allLocations = useSelector((state) => state.locations.locations.items);
   const focusCoords = useSelector((state) => state.locations.focusCoords);
+  const popupElRef = useRef(null);
 
   useEffect(() => {
     if (allLocations) {
@@ -52,8 +52,14 @@ export default function Map(props) {
         "https://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|a8a8a8&chf=a,s,ee00FFFF",
     });
 
+  const hideElement = () => {
+    setTimeout(() => {
+      popupElRef.current._close();
+    }, [2000]);
+  };
+
   return (
-    <div className={classes.mapContainer}>
+    <div className={classes.mapContainer} onClick={hideElement}>
       <MapContainer
         center={defaultPosition}
         zoom={11}
@@ -63,8 +69,8 @@ export default function Map(props) {
         className={classes.map}
       >
         <TileLayer
-          attribution='&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors'
-          url="https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png"
+          attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
         <ZoomControl position="bottomleft" />
         {markerLocations.length > 0 ? (
@@ -78,7 +84,7 @@ export default function Map(props) {
                   : greenIcon
               }
             >
-              <Popup>
+              <Popup ref={popupElRef}>
                 {el.eventName} <br></br>
                 <p>
                   {new Date(el.startDateTime).toString().slice(0, -36)}

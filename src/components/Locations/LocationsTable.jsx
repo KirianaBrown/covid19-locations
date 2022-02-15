@@ -105,13 +105,12 @@ export default function LocationsTable(props) {
     top: "50%",
     left: "50%",
     transform: "translate(-50%, -50%)",
-    width: 400,
+    width: 500,
     bgcolor: "#012e47",
-    border: "2px solid #012032",
     borderRadius: "10px",
     boxShadow: 24,
     p: 4,
-    color: "#f1f1e6;",
+    color: "#a8a8a8;",
   };
 
   return (
