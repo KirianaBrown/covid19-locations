@@ -38,7 +38,7 @@ function App() {
       {!loading && (
         <>
           <Header />
-          {!hasLoaded && <p>Loading ...</p>}
+          {!hasLoaded && <Loader />}
           <Layout>
             {hasLoaded && (
               <>
