@@ -1,0 +1,33 @@
+@import "../../assets/var.css";
+.footer {
+    margin: 2rem 0rem;
+    color: var(--color-grey);
+}
+
+.footerTopRow {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    font-family: var(--font-text);
+    height: 10rem;
+    font-style: italic;
+    padding: 0rem 1rem;
+}
+
+.footerBottomRow {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+}
+
+.footerBottomRow a {
+    margin: 1rem 0.5rem;
+}
+
+ul {
+    padding-inline-start: 0px;
+}
+
+a {
+    color: var(--color-blue);
+}
