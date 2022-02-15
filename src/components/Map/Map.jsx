@@ -8,8 +8,10 @@ import {
   ZoomControl,
   useMap,
 } from "react-leaflet";
+import * as L from "leaflet";
 import Casual from "../../assets/casual.png";
 import Close from "../../assets/close.png";
+import Logo from "../../assets/logo.png";
 import classes from "./Map.module.css";
 
 export default function Map(props) {
@@ -35,6 +37,21 @@ export default function Map(props) {
     return null;
   }
 
+  // Create icon
+  const LeafIcon = L.Icon.extend({
+    options: {},
+  });
+
+  const yellowIcon = new LeafIcon({
+      iconUrl:
+        "https://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|33b1ff&chf=a,s,ee00FFFF",
+      zIndexOffset: 34,
+    }),
+    greenIcon = new LeafIcon({
+      iconUrl:
+        "https://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|a8a8a8&chf=a,s,ee00FFFF",
+    });
+
   return (
     <div className={classes.mapContainer}>
       <MapContainer
@@ -46,8 +63,8 @@ export default function Map(props) {
         className={classes.map}
       >
         <TileLayer
-          attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          attribution='&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors'
+          url="https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png"
         />
         <ZoomControl position="bottomleft" />
         {markerLocations.length > 0 ? (
@@ -55,6 +72,11 @@ export default function Map(props) {
             <Marker
               position={[el.location.latitude, el.location.longitude]}
               key={el.eventId}
+              icon={
+                el.location.latitude === focusCoords[0].toString()
+                  ? yellowIcon
+                  : greenIcon
+              }
             >
               <Popup>
                 {el.eventName} <br></br>

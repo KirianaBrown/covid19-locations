@@ -60,7 +60,7 @@ export default function LocationsTable(props) {
   let resPerPage = 8;
   const width = window.screen.width;
   if (width >= 1920) {
-    resPerPage = 16;
+    resPerPage = 12;
   }
 
   const len = displayLocations.length;
