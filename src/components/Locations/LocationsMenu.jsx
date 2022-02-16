@@ -28,6 +28,14 @@ export default function LocationsMenu() {
 
   return (
     <div className={classes.locationsMenu}>
+      <select onChange={selectHandler} className={classes.locationsMenuSelect}>
+        <option>All Locations</option>
+        {alphaListOfCities.map((city) => (
+          <option key={city} value={city}>
+            {city === "" ? "Flights / Other" : city}
+          </option>
+        ))}
+      </select>
       <ul>
         <li className={selectedCity === "All Locations" ? classes.active : ""}>
           <button
