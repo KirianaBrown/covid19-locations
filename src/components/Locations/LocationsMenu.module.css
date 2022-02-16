@@ -71,11 +71,19 @@
     display: none;
 }
 
+.locationsMenu:focus {
+    outline: none;
+}
+
 @media only screen and (max-width: 800px) {
     .locationsMenuSelect {
         display: block;
     }
     .locationsMenu ul {
         display: none;
+    }
+    .locationsMenu {
+        height: auto;
+        overflow-y: hidden;
     }
 }
