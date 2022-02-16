@@ -36,3 +36,16 @@ header p {
     letter-spacing: 1.7px;
     font-size: 0.8rem;
 }
+
+@media only screen and (max-width: 780px) {
+    header {
+        display: block;
+        text-align: center;
+    }
+    header div {
+        justify-content: center;
+    }
+    .link {
+        display: none;
+    }
+}
