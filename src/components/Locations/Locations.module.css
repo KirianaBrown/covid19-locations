@@ -3,3 +3,10 @@
     display: grid;
     grid-template-columns: 25% 75%;
 }
+
+@media only screen and (max-width: 800px) {
+    .locations {
+        display: flex;
+        flex-direction: column;
+    }
+}
