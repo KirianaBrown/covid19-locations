@@ -90,8 +90,3 @@ tbody tr td:first-child {
     font-weight: 600;
     cursor: pointer;
 }
-
-.publishedFilterDisabled {
-    color: orange;
-    cursor: not-allowed;
-}

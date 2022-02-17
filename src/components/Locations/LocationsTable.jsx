@@ -44,20 +44,30 @@ export default function LocationsTable(props) {
 
   // handle filter of display locations by published date
   const publishedSortHandler = () => {
-    let sortedLocationsByPublish;
-    if (locations.length === 0) {
-      sortedLocationsByPublish = props.locations
-        .slice()
-        .sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt));
+    if (!publishedFilterOn) {
+      let sortedLocationsByPublish;
+      if (locations.length === 0) {
+        sortedLocationsByPublish = props.locations
+          .slice()
+          .sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt));
+      } else {
+        // 1. sort
+        sortedLocationsByPublish = locations
+          .slice()
+          .sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt));
+      }
+      // 2. set display locations in state
+      setDisplayLocations(sortedLocationsByPublish);
+      setPublishedFilterOn(!publishedFilterOn);
     } else {
-      // 1. sort
-      sortedLocationsByPublish = locations
-        .slice()
-        .sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt));
+      if (locations.length === 0) {
+        setDisplayLocations(props.locations);
+        setPublishedFilterOn(!publishedFilterOn);
+      } else {
+        setDisplayLocations(locations);
+        setPublishedFilterOn(!publishedFilterOn);
+      }
     }
-    // 2. set display locations in state
-    setDisplayLocations(sortedLocationsByPublish);
-    setPublishedFilterOn(!publishedFilterOn);
   };
 
   // Set pagination values
