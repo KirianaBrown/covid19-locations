@@ -20,7 +20,6 @@ export default function LocationsTable(props) {
   const [modalEvent, setModalEvent] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
 
-  // modal
   // Modal
   const [open, setOpen] = useState(false);
   const handleOpen = (event) => {
@@ -45,14 +44,19 @@ export default function LocationsTable(props) {
 
   // handle filter of display locations by published date
   const publishedSortHandler = () => {
-    // 1. sort
-    const sortedLocationsByPublish = locations
-      .slice()
-      .sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt));
+    let sortedLocationsByPublish;
+    if (locations.length === 0) {
+      sortedLocationsByPublish = props.locations
+        .slice()
+        .sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt));
+    } else {
+      // 1. sort
+      sortedLocationsByPublish = locations
+        .slice()
+        .sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt));
+    }
     // 2. set display locations in state
     setDisplayLocations(sortedLocationsByPublish);
-
-    // 3. set state for active case
     setPublishedFilterOn(!publishedFilterOn);
   };
 
@@ -121,6 +125,7 @@ export default function LocationsTable(props) {
             <th>Location</th>
             <th>Date</th>
             <th>Exposure Level</th>
+
             <th
               className={publishedFilterOn ? classes.active : classes.nonActive}
               onClick={publishedSortHandler}
@@ -135,6 +140,7 @@ export default function LocationsTable(props) {
                 }
               />
             </th>
+
             <th>Advice</th>
           </tr>
         </thead>
