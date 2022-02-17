@@ -11,4 +11,10 @@
     View the latest locations of Interest in New Zealand as published by the Ministry of Health NZ. 
 </p>
 
-<!-- <img src="./app/static/img/readme1.png" alt="Project Demo"> -->
+<img src="./src/assets/demo.png" alt="Project Demo">
+
+#### Timing and sources
+
+A Public API offered by the [Ministry of Health - Github](https://github.com/minhealthnz/nz-covid-data/tree/main/locations-of-interest) consisting of a single JSON endpoint.
+
+Currently all data sources are expected to update once an hour, on the hour, but this schedule may be changed.
