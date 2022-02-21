@@ -24,7 +24,10 @@ export const fetchLocationData = () => {
         if (
           cur.eventName.includes("Flight") ||
           cur.eventName.includes("FLIGHT") ||
-          cur.eventName.includes("flight")
+          cur.eventName.includes("flight") ||
+          cur.eventName.includes("Bus") ||
+          cur.eventName.includes("BUS") ||
+          cur.eventName.includes("bus")
         ) {
           indexes.push(index);
         }
@@ -37,7 +40,7 @@ export const fetchLocationData = () => {
           updatedItem = {
             ...cur,
             location: {
-              city: "Flight/Other",
+              city: "Flight/Bus/Other",
               latitude: "",
               longitude: "",
               suburb: "",
