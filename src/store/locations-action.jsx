@@ -21,8 +21,11 @@ export const fetchLocationData = () => {
       const indexes = [];
 
       locationData.items.forEach((cur, index) => {
-        if (cur.eventName.includes("Flight")) {
-          console.log(cur);
+        if (
+          cur.eventName.includes("Flight") ||
+          cur.eventName.includes("FLIGHT") ||
+          cur.eventName.includes("flight")
+        ) {
           indexes.push(index);
         }
       });
