@@ -17,9 +17,42 @@ export const fetchLocationData = () => {
 
     try {
       const locationData = await fetchData();
+
+      const indexes = [];
+
+      locationData.items.forEach((cur, index) => {
+        if (cur.eventName.includes("Flight")) {
+          console.log(cur);
+          indexes.push(index);
+        }
+      });
+
+      const updatedItems = locationData.items.map((cur, index) => {
+        let updatedItem;
+
+        if (indexes.includes(index)) {
+          updatedItem = {
+            ...cur,
+            location: {
+              city: "Flight/Other",
+              latitude: "",
+              longitude: "",
+              suburb: "",
+              address: "",
+            },
+          };
+          locationData.items[index] = updatedItem;
+        } else {
+          updatedItem = cur;
+        }
+
+        return updatedItem;
+      });
+
       dispatch(
         locationsActions.setLocationsData({
           data: locationData,
+          locations: updatedItems,
           loaded: true,
         })
       );

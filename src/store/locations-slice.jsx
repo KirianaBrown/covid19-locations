@@ -10,11 +10,13 @@ const locationsSlice = createSlice({
     filteredLocations: [],
     displayLocations: [],
     focusCoords: [-36.8509, 174.7645],
+    loadedLocations: [],
   },
   reducers: {
     setLocationsData(state, action) {
       state.locations = action.payload.data;
       state.isLoaded = action.payload.loaded;
+      state.loadedLocations = action.payload.locations;
     },
     setSelectedCity(state, action) {
       state.selectedCity = action.payload.city;
