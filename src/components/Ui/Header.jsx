@@ -4,7 +4,7 @@ import Logo from "../../assets/logo.png";
 import classes from "./Header.module.css";
 
 export default function Header() {
-  const allLocations = useSelector((state) => state.locations.locations.items);
+  const allLocations = useSelector((state) => state.locations.locations);
 
   const latestPublishedDate = allLocations.reduce((a, b) =>
     a.publishedAt > b.publishedAt ? a : b

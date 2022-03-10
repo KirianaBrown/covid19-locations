@@ -16,7 +16,7 @@ import classes from "./Map.module.css";
 export default function Map(props) {
   const [markerLocations, setMarkerLocations] = useState([]);
   const defaultPosition = [-36.8509, 174.7645]; // Auckland
-  const allLocations = useSelector((state) => state.locations.locations.items);
+  const allLocations = useSelector((state) => state.locations.locations);
   const focusCoords = useSelector((state) => state.locations.focusCoords);
   const popupElRef = useRef(null);
 

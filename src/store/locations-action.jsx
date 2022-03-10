@@ -3,8 +3,15 @@ import { locationsActions } from "./locations-slice";
 export const fetchLocationData = () => {
   return async (dispatch) => {
     const fetchData = async () => {
+      /* PREVIOUS MINISTRY OF HEALTH API - NO LONGER SUPPORTED
+        HAS BEEN REPLACED WITH MOCK JSON-SERVER API
+       const res = await fetch(
+         `https://api.integration.covid19.health.nz/locations/v1/current-locations-of-interest`
+       ); 
+      */
+
       const res = await fetch(
-        `https://api.integration.covid19.health.nz/locations/v1/current-locations-of-interest`
+        `https://covid-locations-api.herokuapp.com/items`
       );
 
       if (!res.ok) {
@@ -12,15 +19,17 @@ export const fetchLocationData = () => {
       }
 
       const data = await res.json();
+
       return data;
     };
 
     try {
       const locationData = await fetchData();
+      console.log(locationData);
 
       const indexes = [];
 
-      locationData.items.forEach((cur, index) => {
+      locationData.forEach((cur, index) => {
         if (
           cur.eventName.includes("Flight") ||
           cur.eventName.includes("FLIGHT") ||
@@ -33,7 +42,7 @@ export const fetchLocationData = () => {
         }
       });
 
-      const updatedItems = locationData.items.map((cur, index) => {
+      const updatedItems = locationData.map((cur, index) => {
         let updatedItem;
 
         if (indexes.includes(index)) {
@@ -47,7 +56,7 @@ export const fetchLocationData = () => {
               address: "",
             },
           };
-          locationData.items[index] = updatedItem;
+          locationData[index] = updatedItem;
         } else {
           updatedItem = cur;
         }

@@ -11,7 +11,7 @@ export default function LocationsMenu() {
 
   // Dispatch actions to set selectedCity & filteredLocations in store
 
-  const locations = useSelector((state) => state.locations.locations.items);
+  const locations = useSelector((state) => state.locations.locations);
 
   const selectHandler = (e) => {
     setSelectedCity(e.target.value);

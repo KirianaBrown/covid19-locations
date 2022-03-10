@@ -19,7 +19,6 @@ function App() {
 
   const locationData = useSelector((state) => state.locations.isLoaded);
 
-  // const locations = useSelector((state) => state.locations.locations.items);
   const locations = useSelector((state) => state.locations.loadedLocations);
 
   useEffect(() => {
