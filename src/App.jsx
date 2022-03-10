@@ -4,6 +4,7 @@ import { fetchLocationData, setUniqueCities } from "./store/locations-action";
 import Loader from "./components/Ui/Loader";
 import Header from "./components/Ui/Header";
 import Layout from "./components/Ui/Layout";
+import ModalDisclaimer from "./components/Ui/ModalDisclaimer";
 import Locations from "./components/Locations/Locations";
 import Map from "./components/Map/Map";
 
@@ -37,6 +38,7 @@ function App() {
       {loading && <Loader />}
       {!loading && (
         <>
+          <ModalDisclaimer />
           <Header />
           {!hasLoaded && <Loader />}
           <Layout>
