@@ -10,7 +10,6 @@ import Map from "./components/Map/Map";
 
 function App() {
   const [hasLoaded, setHasLoaded] = useState(false);
-  const [loading, setLoading] = useState(true);
 
   const dispatch = useDispatch();
 
@@ -27,27 +26,19 @@ function App() {
     locationData && dispatch(setUniqueCities(locations));
   }, [locationData, dispatch, locations]);
 
-  useEffect(() => {
-    setTimeout(() => {
-      setLoading(false);
-    }, 2000);
-  }, []);
-
   return (
     <div>
-      {loading && <Loader />}
-      {!loading && (
+      {!hasLoaded && <Loader />}
+      {hasLoaded && (
         <>
           <ModalDisclaimer />
           <Header />
-          {!hasLoaded && <Loader />}
+
           <Layout>
-            {hasLoaded && (
-              <>
-                <Locations locations={locations} />
-                <Map />
-              </>
-            )}
+            <>
+              <Locations locations={locations} />
+              <Map />
+            </>
           </Layout>
         </>
       )}
